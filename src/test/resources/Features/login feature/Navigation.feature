@@ -6,7 +6,6 @@ Feature: Navigation Work
     When the user clicks the "Logout" button
     Then the user should be logged out successfully
     And the user should be redirected to the Login page
-    And the Dashboard should not be accessible via the browser back button
 
   @C47
   Scenario: Verify all navigation menu items are displayed

@@ -1,22 +1,25 @@
 package com.ERP.CRM.StepDefinations;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import com.ERP.CRM.PageObjectModels.NavigationPOM;
 import org.junit.Assert;
+import com.ERP.CRM.LoginHelper.LoginHelper;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class NavigationStepDefination extends LoginStepDefination {
+public class NavigationStepDefination {
 
     NavigationPOM navigationPOM = new NavigationPOM();
+    LoginHelper loginHelper = new LoginHelper();
     @Given("the user is logged in and on the Dashboard page {string} {string}")
     public void theUserIsLoggedInAndOnTheDashboardPage(String Id, String Pass) {
-        the_user_enters_a_valid_id(Id);
-        the_user_enters_a_valid_password(Pass);
-        the_user_clicks_the_login_button();
+        loginHelper.FullLoginProcess(Id,Pass);
     }
 
 
@@ -28,25 +31,23 @@ public class NavigationStepDefination extends LoginStepDefination {
 
     @Then("the user should be logged out successfully")
     public void theUserShouldBeLoggedOutSuccessfully() {
-
-        
+        assertEquals(navigationPOM.LoginForm(),"Login");
     }
 
     @And("the user should be redirected to the Login page")
     public void theUserShouldBeRedirectedToTheLoginPage() {
-        
-    }
-
-    @And("the Dashboard should not be accessible via the browser back button")
-    public void theDashboardShouldNotBeAccessibleViaTheBrowserBackButton() {
+        assertEquals(navigationPOM.LoginForm(),"Login");
     }
 
     @When("the user views the navigation bar")
     public void theUserViewsTheNavigationBar() {
-        
+        navigationPOM.NavigationBarVisible();
     }
 
     @Then("all menu items should be visible:")
-    public void allMenuItemsShouldBeVisible() {
+    public void allMenuItemsShouldBeVisible(DataTable table) {
+        List<String> expectedOutput = table.asList();
+        List<String> actualoutcome = navigationPOM.NavigationList();
+        assertEquals(actualoutcome,expectedOutput);
     }
 }

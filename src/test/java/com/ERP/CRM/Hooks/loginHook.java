@@ -3,18 +3,20 @@ package com.ERP.CRM.Hooks;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import com.ERP.CRM.Utils.DriverFactory;
-
+import org.openqa.selenium.WebDriver;
 
 public class loginHook {
+
+    public static WebDriver driver;
+
     @Before
     public void Setup(){
-        DriverFactory.getDriver().get("http://localhost:8080/");
-
+        driver = DriverFactory.getDriver();
+        driver.get("http://localhost:8080/");
     }
 
     @After
-    public static void TearDown(){
+    public void TearDown(){
         DriverFactory.quitDriver();
-
     }
 }

@@ -8,7 +8,9 @@ import io.cucumber.java.en.When;
 import com.ERP.CRM.PageObjectModels.NavigationPOM;
 import org.junit.Assert;
 import com.ERP.CRM.LoginHelper.LoginHelper;
+import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -17,10 +19,7 @@ public class NavigationStepDefination {
 
     NavigationPOM navigationPOM = new NavigationPOM();
     LoginHelper loginHelper = new LoginHelper();
-    @Given("the user is logged in and on the Dashboard page {string} {string}")
-    public void theUserIsLoggedInAndOnTheDashboardPage(String Id, String Pass) {
-        loginHelper.FullLoginProcess(Id,Pass);
-    }
+
 
 
     @When("the user clicks the {string} button")
@@ -50,4 +49,13 @@ public class NavigationStepDefination {
         List<String> actualoutcome = navigationPOM.NavigationList();
         assertEquals(actualoutcome,expectedOutput);
     }
+
+
+
+    @Given("the user logs in with {string} {string}")
+    public void theUserLogsInWith(String userId, String pass) {
+        loginHelper.LoginWithCookies(userId,pass,navigationPOM.currentDriver());
+
+    }
+
 }

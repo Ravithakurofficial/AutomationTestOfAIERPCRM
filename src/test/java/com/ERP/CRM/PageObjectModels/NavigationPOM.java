@@ -53,4 +53,7 @@ public class NavigationPOM {
     public void NavigationBarVisible(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(VisibleNavigationBar)).isDisplayed();
     }
+    public WebDriver currentDriver(){
+        return this.driver;
+    }
 }

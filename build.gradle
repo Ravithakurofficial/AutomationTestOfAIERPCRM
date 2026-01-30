@@ -26,8 +26,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.session:spring-session-core'
 	implementation 'com.mysql:mysql-connector-j:8.0.33'
-
-
+// Source: https://mvnrepository.com/artifact/org.json/json
+	implementation("org.json:json:20251224")
 	// Selenium
 	implementation 'org.seleniumhq.selenium:selenium-java:4.39.0'
 	implementation 'com.squareup.okhttp3:okhttp:4.12.0'
